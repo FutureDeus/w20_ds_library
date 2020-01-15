@@ -61,3 +61,24 @@ def cm_accuracy(confusion_dictionary: dict) -> float:
   tn = confusion_dictionary[(0,0)]
   
   return (tp+tn)/(tp+fp+fn+tn)
+
+def cosine_similarity(vect1:list ,vect2:list) -> float:
+  assert isinstance(vect1, list), f'vect1 is not a list but a {type(vect1)}'
+  assert isinstance(vect2, list), f'vect2 is not a list but a {type(vect2)}'
+  assert len(vect1) == len(vect2), f"Mismatching length for vectors: {len(vect1)} and {len(vect2)}"
+  
+  #your code here
+  top, bot_a, bot_b = 0, 0, 0
+  for i in range(len(vect1)):
+    top += vect1[i]*vect2[i]
+    bot_a += vect1[i]**2
+    bot_b += vect2[i]**2
+  return (top/(((bot_a)**(1/2))*((bot_b)**(1/2))))
+
+def inverse_cosine_similarity(vect1:list ,vect2:list) -> float:
+  assert isinstance(vect1, list), f'vect1 is not a list but a {type(vect1)}'
+  assert isinstance(vect2, list), f'vect2 is not a list but a {type(vect2)}'
+  assert len(vect1) == len(vect2), f"Mismatching length for vectors: {len(vect1)} and {len(vect2)}"
+
+  normal_result = cosine_similarity(vect1, vect2)
+  return 1.0 - normal_result
