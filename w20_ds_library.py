@@ -13,7 +13,7 @@ def ordered_distances(target_vector:list, crowd_table:dframe, answer_column:str,
   assert answer_column in crowd_table, f'{answer_column} is not a legit column in crowd_table - check case and spelling'
 
   #your code goes here
-  distance_list = [(index, euclidean_distance(target_vector, crowd_table.iloc[index].tolist()[1:])) for index,row in crowd_table.iterrows()]
+  distance_list = [(index, dfunc(target_vector, crowd_table.iloc[index].tolist()[1:])) for index,row in crowd_table.iterrows()]
   distance_list.sort(key = sortSecond)
   return distance_list
 
