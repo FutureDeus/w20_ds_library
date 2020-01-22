@@ -1,6 +1,9 @@
 import pandas as pd
+import numpy as np
 from typing import TypeVar, Callable
 dframe = TypeVar('pd.core.frame.DataFrame')
+
+char_set = '#!abcdefghijklmnopqrstuvwxyz'
 
 def hello_ds():
     print("Big hello to you")
