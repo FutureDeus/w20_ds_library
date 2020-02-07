@@ -20,8 +20,8 @@ def ordered_distances(target_vector:list, crowd_table:dframe, answer_column:str,
   assert answer_column in crowd_table, f'{answer_column} is not a legit column in crowd_table - check case and spelling'
 
   #your code goes here
-  crowd_table = crowd_table.drop(answer_column, 1)
-  distance_list = [(index, dfunc(target_vector, row.tolist())) for index,row in crowd_table.iterrows()]
+  crowd1_table = crowd_table.drop(answer_column, 1)
+  distance_list = [(index, dfunc(target_vector, row.tolist())) for index, row in crowd1_table.iterrows()]
   distance_list.sort(key = sortSecond)
   return distance_list
 
