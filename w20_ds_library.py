@@ -6,6 +6,9 @@ dframe = TypeVar('pd.core.frame.DataFrame')
 
 char_set = '#!abcdefghijklmnopqrstuvwxyz'
 
+swords = stopwords.words('english')
+swords.sort()
+
 def hello_ds():
     print("Big hello to you")
 
