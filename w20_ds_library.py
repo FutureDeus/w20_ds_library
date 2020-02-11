@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import re
 from typing import TypeVar, Callable
 dframe = TypeVar('pd.core.frame.DataFrame')
 
@@ -110,3 +111,15 @@ def bayes_tester(testing_table:dframe, evidence_bag:dict, training_table:dframe,
 
   #your code here
   return [bayes(set(parser(row['text'])), evidence_bag, training_table) for index, row in testing_table.iterrows()]
+
+def get_clean_words(stopwords:list, raw_sentence:str) -> list:
+  assert isinstance(stopwords, list), f'stopwords must be a list but saw a {type(stopwords)}'
+  assert all([isinstance(word, str) for word in stopwords]), f'expecting stopwords to be a list of strings'
+  assert isinstance(raw_sentence, str), f'raw_sentence must be a str but saw a {type(raw_sentence)}'
+
+  sentence = raw_sentence.lower()
+  for word in stopwords:
+    sentence = re.sub(r"\b"+word+r"\b", '', sentence)  #replace stopword with empty
+
+  cleaned = re.findall("\w+", sentence)  #now find the words
+  return cleaned
