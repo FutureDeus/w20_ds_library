@@ -1,11 +1,14 @@
 import pandas as pd
 import numpy as np
 import re
+import nltk
 from typing import TypeVar, Callable
 dframe = TypeVar('pd.core.frame.DataFrame')
 
 char_set = '#!abcdefghijklmnopqrstuvwxyz'
 
+nltk.download('stopwords')
+from nltk.corpus import stopwords
 swords = stopwords.words('english')
 swords.sort()
 
