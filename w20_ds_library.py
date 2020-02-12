@@ -79,7 +79,12 @@ def cosine_similarity(vect1:list ,vect2:list) -> float:
   assert len(vect1) == len(vect2), f"Mismatching length for vectors: {len(vect1)} and {len(vect2)}"
   
   #your code here
-  return np.dot(vect1, vect2)/(np.linalg.norm(vect1) * np.linalg.norm(vect2))
+  top, bot_a, bot_b = 0, 0, 0
+  for i in range(len(vect1)):
+    top += vect1[i]*vect2[i]
+    bot_a += vect1[i]**2
+    bot_b += vect2[i]**2
+  return (top/(((bot_a)**(1/2))*((bot_b)**(1/2))))
 
 def inverse_cosine_similarity(vect1:list ,vect2:list) -> float:
   assert isinstance(vect1, list), f'vect1 is not a list but a {type(vect1)}'
