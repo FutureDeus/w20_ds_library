@@ -5,6 +5,7 @@ import nltk
 from scipy import spatial
 from typing import TypeVar, Callable
 dframe = TypeVar('pd.core.frame.DataFrame')
+np.seterr(divide='ignore', invalid='ignore')
 
 char_set = '#!abcdefghijklmnopqrstuvwxyz'
 
@@ -80,7 +81,7 @@ def cosine_similarity(vect1:list ,vect2:list) -> float:
   assert len(vect1) == len(vect2), f"Mismatching length for vectors: {len(vect1)} and {len(vect2)}"
   
   #your code here
-  return 1 - spatial.distance.cosine(vect1, vect2)
+  return np.nan_to_num(1 - spatial.distance.cosine(vect1, vect2))
 
 def inverse_cosine_similarity(vect1:list ,vect2:list) -> float:
   assert isinstance(vect1, list), f'vect1 is not a list but a {type(vect1)}'
