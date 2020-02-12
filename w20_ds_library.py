@@ -79,11 +79,13 @@ def cosine_similarity(vect1:list ,vect2:list) -> float:
   assert len(vect1) == len(vect2), f"Mismatching length for vectors: {len(vect1)} and {len(vect2)}"
   
   #your code here
-  top = np.dot(vect1, vect2)
-  bot_a = np.linalg.norm(vect1)
-  bot_b = np.linalg.norm(vect2)
+  top, bot_a, bot_b = 0, 0, 0
+  for i in range(len(vect1)):
+    top += vect1[i]*vect2[i]
+    bot_a += vect1[i]**2
+    bot_b += vect2[i]**2
   try:
-    return (top/((bot_a)*(bot_b)))
+    return (top/(((bot_a)**(1/2))*((bot_b)**(1/2))))
   except ZeroDivisionError:
     return 0
 
