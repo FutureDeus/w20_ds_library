@@ -81,7 +81,7 @@ def cosine_similarity(vect1:list ,vect2:list) -> float:
   #your code here
   try:
     return np.dot(vect1, vect2)/(np.linalg.norm(vect1) * np.linalg.norm(vect2))
-  except ZeroDivisionError:
+  except RuntimeWarning:
     return 0
 
 def inverse_cosine_similarity(vect1:list ,vect2:list) -> float:
