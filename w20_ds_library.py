@@ -84,7 +84,10 @@ def cosine_similarity(vect1:list ,vect2:list) -> float:
     top += vect1[i]*vect2[i]
     bot_a += vect1[i]**2
     bot_b += vect2[i]**2
-  return (top/(((bot_a)**(1/2))*((bot_b)**(1/2))))
+  try:
+    return (top/(((bot_a)**(1/2))*((bot_b)**(1/2))))
+  except ZeroDivisionError:
+    return 0
 
 def inverse_cosine_similarity(vect1:list ,vect2:list) -> float:
   assert isinstance(vect1, list), f'vect1 is not a list but a {type(vect1)}'
