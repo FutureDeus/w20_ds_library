@@ -137,3 +137,24 @@ def get_clean_words(stopwords:list, raw_sentence:str) -> list:
 
   cleaned = re.findall("\w+", sentence)  #now find the words
   return cleaned
+
+def robust_bayes(evidence:set, evidence_bag:dict, training_table:dframe, laplace:float=1.0) -> tuple:
+  assert isinstance(evidence, set), f'evidence not a set but instead a {type(evidence)}'
+  assert isinstance(evidence_bag, dict), f'evidence_bag not a dict but instead a {type(evidence_bag)}'
+  assert isinstance(training_table, pd.core.frame.DataFrame), f'training_table not a dataframe but instead a {type(training_table)}'
+  assert 'label' in training_table, f'label column is not found in training_table'
+  assert training_table.label.dtype == int, f"label must be an int column (possibly wrangled); instead it has type({training_table.label.dtype})"
+  assert isinstance(laplace, float), f'laplace not a float but instead a {type(laplace)}'
+
+  #your code here
+  label_list = training_table['label'].tolist()
+
+  variation = max(label_list)+1
+  v_list = [0 for i in range(variation)]
+  
+  count = [label_list.count(i) for i in range(variation)]
+  p_count = [j/len(training_table) for j in count]
+
+  V = len(evidence_bag)
+
+  return tuple(np.multiply(np.prod([np.divide(evidence_bag.get(key, v_list)[i] + laplace, count[i] + V + laplace) for key in evidence]), p_count[i]) for i in range(variation))
