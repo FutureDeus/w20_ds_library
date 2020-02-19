@@ -157,4 +157,4 @@ def robust_bayes(evidence:set, evidence_bag:dict, training_table:dframe, laplace
 
   V = len(evidence_bag)
 
-  return tuple(np.multiply(np.prod([np.divide(evidence_bag.get(key, v_list)[i] + laplace, count[i] + V + laplace) for key in evidence]), p_count[i]) for i in range(variation))
+  return tuple(max(np.multiply(np.prod([np.divide(evidence_bag.get(key, v_list)[i] + laplace, count[i] + V + laplace) for key in evidence]), p_count[i]), 2.2250738585072014e-308) for i in range(variation))
