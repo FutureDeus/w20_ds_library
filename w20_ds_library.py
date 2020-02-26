@@ -9,6 +9,10 @@ dframe = TypeVar('pd.core.frame.DataFrame')
 char_set = '#!abcdefghijklmnopqrstuvwxyz'
 narray = TypeVar('numpy.ndarray')
 
+import en_core_web_md
+nlp = en_core_web_md.load()
+spnlp = TypeVar('spacy.lang.en.English')
+
 nltk.download('stopwords')
 from nltk.corpus import stopwords
 swords = stopwords.words('english')
