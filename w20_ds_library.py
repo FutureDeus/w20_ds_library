@@ -10,6 +10,7 @@ dframe = TypeVar('pd.core.frame.DataFrame')
 char_set = '#!abcdefghijklmnopqrstuvwxyz'
 narray = TypeVar('numpy.ndarray')
 
+import spacy
 spnlp = TypeVar('spacy.lang.en.English')
 
 nltk.download('stopwords')
