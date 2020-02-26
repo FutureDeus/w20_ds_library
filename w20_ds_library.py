@@ -18,6 +18,17 @@ def hello_ds():
 def sortSecond(val):
   return val[1]
 
+def euclidean_distance(vect1:list ,vect2:list) -> float:
+  assert isinstance(vect1, list), f'vect1 is not a list but a {type(vect1)}'
+  assert isinstance(vect2, list), f'vect2 is not a list but a {type(vect2)}'
+  assert len(vect1) == len(vect2), f"Mismatching length for euclidean vectors: {len(vect1)} and {len(vect2)}"
+
+  #rest of your code below
+  cur_value = 0
+  for i in range(len(vect1)):
+    cur_value += np.square(vect1[i]-vect2[i])
+  return np.sqrt(cur_value)
+
 def ordered_distances(target_vector:list, crowd_table:dframe, answer_column:str, dfunc:Callable) -> list:
   assert isinstance(target_vector, list), f'target_vector not a list but instead a {type(target_vector)}'
   assert isinstance(crowd_table, pd.core.frame.DataFrame), f'crowd_table not a dataframe but instead a {type(crowd_table)}'
