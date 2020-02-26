@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy
 import numpy as np
 import re
 import nltk
