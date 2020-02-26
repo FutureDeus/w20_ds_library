@@ -258,3 +258,12 @@ def sent2vec(nlp:spnlp, s: str) -> narray:
 
 def vec(nlp:spnlp, s:str) -> narray:
     return nlp.vocab[s].vector
+
+def spacy_closest_sent(nlp:spnlp, space:list, input_str:str, n:int=10):
+  assert isinstance(space, list)
+  assert all([isinstance(sp, spacy.tokens.span.Span) for sp in space])
+
+  input_vec = sent2vec(nlp, input_str)
+  return sorted(space,
+                key=lambda x: fast_cosine(np.mean([w.vector for w in x], axis=0), input_vec),
+                reverse=True)[:n]
