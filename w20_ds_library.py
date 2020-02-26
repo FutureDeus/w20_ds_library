@@ -7,6 +7,7 @@ from numpy.linalg import norm
 dframe = TypeVar('pd.core.frame.DataFrame')
 
 char_set = '#!abcdefghijklmnopqrstuvwxyz'
+narray = TypeVar('numpy.ndarray')
 
 nltk.download('stopwords')
 from nltk.corpus import stopwords
