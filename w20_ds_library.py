@@ -249,3 +249,9 @@ def dict_ordered_distances(space:dict, coord:narray) -> list:
 
   #your code here
   return sorted([(keys, fast_euclidean_distance(values, coord)) for keys, values in space.items()], key = lambda x: x[1])
+
+def sent2vec(nlp:spnlp, s: str) -> narray:
+  return meanv(np.array([i.vector for i in nlp(s)]))
+
+def vec(nlp:spnlp, s:str) -> narray:
+    return nlp.vocab[s].vector
